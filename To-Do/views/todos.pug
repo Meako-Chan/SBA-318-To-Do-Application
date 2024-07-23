@@ -1,0 +1,31 @@
+extends layout 
+
+block content 
+    h1 All Todos 
+    a(href="/") Home Page 
+    form(action="/todos" method="post")
+        h2 Add New Todo
+        label(for="title") Title:
+        input(type="text" name="title" required)
+        br
+        label(for="description") Description:
+        input(type="text" name="description" required)
+        br
+        label(for="dueDate") Due Date:
+        input(type="date" name="dueDate" required)
+        br
+        label(for="priority") Priority:
+        select(name="priority" required)
+            option(value="low") Low
+            option(value="medium") Medium
+            option(value="high") High
+        br
+        button(type="submit") Add Todo
+    ul 
+        each todo in todos 
+            li 
+                h2 #{todo.title}
+                p  #{todo.description}
+                p  #{todo.dueDate}
+                p  #{todo.priority}
+    

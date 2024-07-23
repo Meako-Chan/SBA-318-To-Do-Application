@@ -4,7 +4,7 @@ var todos = require('../data/todos');
 
 /* GET all todos */
 router.get('/', function(req, res) {
-  res.json(todos.getTodos());
+  res.render('todos', { title: 'Todo List', todos: todos.getTodos() });
 });
 
 /* GET todo by id */
