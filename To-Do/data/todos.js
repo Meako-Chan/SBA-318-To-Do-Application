@@ -1,7 +1,10 @@
+let dueDates = require('./dueDate');
+let priorities = require('./priority');
+
 let todos = [
-    {id: 1, title: "SBA 318", description: 'Express App with REST Api', completed: false},
-    {id: 2, title: "To-Do App", description: 'App to hold to-do lists', completed: false},
-    {id: 3, title: "Read a Book", description: 'Spend idle time reading', completed: true},
+    {id: 1, title: "SBA 318", description: 'Express App with REST Api', completed: false, dueDate: new Date('2024-7-30'), priority: high},
+    {id: 2, title: "To-Do App", description: 'App to hold to-do lists', completed: false, dueDate: new Date('2024-7-14'), priority: high},
+    {id: 3, title: "Read a Book", description: 'Spend idle time reading', completed: true, dueDate: new Date('2024-7-11'), priority: low},
 ]
 
 function getTodos(){
@@ -15,6 +18,8 @@ function getTodoById(id){
 
 function addTodo(todo){
     todo.id = todos.length + 1;
+    todo = dueDates.addDueDate(todo, todo.dueDate);
+    todo = priorities.addPriority(todo, todo.priority);
     todos.push(todo);
     return todo;
 }
