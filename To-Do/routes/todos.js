@@ -17,7 +17,7 @@ router.get('/:id', function(req, res) {
 });
 
 /* POST todo by id */
-router.post('/:id', function(req, res) {
+router.post('/', function(req, res) {
   const todo = {
     title: req.body.title,
     description: req.body.description,
@@ -28,4 +28,29 @@ router.post('/:id', function(req, res) {
   res.json(newTodo);
 
 });
+
+/* PUT update todo by id */
+router.put('/:id', function(req, res) {
+  let id = parseInt(req.params.id);
+  const updatedTodo = {
+    title: req.body.title,
+    description: req.body.description,
+    completed: req.body.completed,
+  }
+  let todo = todos.updateTodo(id, updatedTodo);
+  if(!todo){
+    return res.status(404).send('No todo found');
+  }
+  res.json(todo);
+});
+
+/* DELETE todo by id */
+router.delete('/:id', function(req, res){
+  let id = parseInt(req.params.id);
+  const todo = todos.deleteTodo(id);
+  if(!todo){
+    return res.status(404).send('No todo found');
+  }
+  res.json(todo);
+})
 module.exports = router;

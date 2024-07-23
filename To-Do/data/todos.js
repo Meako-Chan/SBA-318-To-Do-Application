@@ -28,9 +28,11 @@ function updateTodo(id, newTodo){
 
 function deleteTodo(id){
     let index = todos.findIndex(todo => todo.id === id);
-    todos.splice(index, 1);
-    return todos;
-
+    if(index){
+        todos.splice(index, 1);
+        return todos;
+    }
+    return null;
 }
 
 module.exports = {
