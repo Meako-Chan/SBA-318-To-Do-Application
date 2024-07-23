@@ -22,6 +22,8 @@ router.post('/', function(req, res) {
     title: req.body.title,
     description: req.body.description,
     completed: false,
+    dueDate: req.body.dueDate,
+    priority: req.body.priority
   };
   const newTodo = todos.addTodo(todo);
   res.status(201);
@@ -36,6 +38,8 @@ router.put('/:id', function(req, res) {
     title: req.body.title,
     description: req.body.description,
     completed: req.body.completed,
+    dueDate: req.body.dueDate,
+    priority: req.body.priority
   }
   let todo = todos.updateTodo(id, updatedTodo);
   if(!todo){
